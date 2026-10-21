@@ -1,7 +1,5 @@
 package com.example.prueba_movil.data.local
 
-package com.example.prueba_movil.data.local
-
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
