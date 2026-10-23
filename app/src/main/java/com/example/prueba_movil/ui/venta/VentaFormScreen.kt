@@ -11,6 +11,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.AttachMoney
+import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Image
@@ -29,7 +30,8 @@ import coil.compose.rememberAsyncImagePainter
 fun VentaFormScreen(
     viewModel: VentaViewModel,
     onVentaGuardada: () -> Unit,
-    onVolver: () -> Unit
+    onVolver: () -> Unit,
+    onEscanearQr: () -> Unit = {}
 ) {
     val uiState = viewModel.uiState
 
@@ -118,6 +120,16 @@ fun VentaFormScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
+            // Recurso Nativo: Escaneo de Código QR
+            OutlinedButton(
+                onClick = onEscanearQr,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Icon(Icons.Default.CameraAlt, contentDescription = null)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("Escanear Comprobante QR")
+            }
+
             // Recurso Nativo: Adjuntar comprobante / foto
             Card(
                 modifier = Modifier.fillMaxWidth(),
@@ -127,7 +139,7 @@ fun VentaFormScreen(
                     modifier = Modifier.padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("Comprobante de Venta (Recurso Nativo)", style = MaterialTheme.typography.titleMedium)
+                    Text("Comprobante de Venta (Foto)", style = MaterialTheme.typography.titleMedium)
                     Spacer(modifier = Modifier.height(8.dp))
 
                     uiState.respaldoUri?.let { uriString ->
