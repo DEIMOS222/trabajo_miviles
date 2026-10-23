@@ -22,7 +22,7 @@ fun ListaVentasScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Gestión de Ventas - DSY1105") },
+                title = { Text("Gestión de Ventas - RicardoContreras ENT ") },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
