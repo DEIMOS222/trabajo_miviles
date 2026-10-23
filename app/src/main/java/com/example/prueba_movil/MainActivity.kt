@@ -3,45 +3,26 @@ package com.example.prueba_movil
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.viewModels
+import com.example.prueba_movil.data.local.AppDatabase
+import com.example.prueba_movil.data.repository.VentaRepository
+import com.example.prueba_movil.ui.navigation.AppNavigation
 import com.example.prueba_movil.ui.theme.Prueba_movilTheme
+import com.example.prueba_movil.ui.venta.VentaViewModel
+import com.example.prueba_movil.ui.venta.VentaViewModelFactory
 
 class MainActivity : ComponentActivity() {
+
+    private val db by lazy { AppDatabase.obtenerBaseDeDatos(this) }
+    private val repository by lazy { VentaRepository(db.ventaDao()) }
+    private val viewModel: VentaViewModel by viewModels(factoryProducer = { VentaViewModelFactory(repository) })
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             Prueba_movilTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                AppNavigation(viewModel = viewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Prueba_movilTheme {
-        Greeting("Android")
     }
 }

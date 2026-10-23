@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.prueba_movil.data.local.VentaEntity
 import com.example.prueba_movil.data.repository.VentaRepository
+import com.example.prueba_movil.model.VentaUiState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -35,7 +36,7 @@ class VentaViewModel(private val repository: VentaRepository) : ViewModel() {
     fun onMontoChanged(valor: String) { uiState = uiState.copy(monto = valor, montoError = null) }
     fun onCodigoAutorizacionChanged(valor: String) { uiState = uiState.copy(codigoAutorizacion = valor, codigoError = null) }
     fun onRespaldoUriChanged(valor: String?) { uiState = uiState.copy(respaldoUri = valor) }
-    fun onObservacionesChanged(valor: String) { uiState = uiState.copy(observations = valor) }
+    fun onObservacionesChanged(valor: String) { uiState = uiState.copy(observaciones = valor) }
 
     // Validación y guardado de la venta cumpliendo las reglas del caso
     fun guardarVenta(onSuccess: () -> Unit) {

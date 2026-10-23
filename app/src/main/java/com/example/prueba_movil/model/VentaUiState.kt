@@ -1,4 +1,4 @@
-package com.example.prueba_movil.ui.venta
+package com.example.prueba_movil.model
 
 data class VentaUiState(
     val tipoServicio: String = "",
